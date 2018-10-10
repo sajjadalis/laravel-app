@@ -196,6 +196,15 @@ textarea {
   	padding-bottom: 5em;
   }
 }
+.probootstrap-vh-60 {
+	height: 60vh;
+	padding-top: 6em;
+	@media screen and (max-width: $md) {
+		height: inherit;
+		padding-top: 5em;
+		padding-bottom: 5em;
+	}
+  }
 
 .bg-primary {
 	background: $primary!important;
@@ -425,10 +434,10 @@ textarea {
 }
 
 // CUSTOM CSS
-.card {
-	background-color: transparent;
-	color: #e9ecef;
-}
-.card .btn-link {
-    color: #e9ecef;
-}
+// .card {
+// 	background-color: transparent;
+// 	color: #e9ecef;
+// }
+// .card .btn-link {
+//     color: #e9ecef;
+// }

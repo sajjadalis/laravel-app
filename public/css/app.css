@@ -10698,6 +10698,19 @@ textarea {
   }
 }
 
+.probootstrap-vh-60 {
+  height: 60vh;
+  padding-top: 6em;
+}
+
+@media screen and (max-width: 768px) {
+  .probootstrap-vh-60 {
+    height: inherit;
+    padding-top: 5em;
+    padding-bottom: 5em;
+  }
+}
+
 .bg-primary {
   background: #28CC9E !important;
 }
@@ -10968,15 +10981,6 @@ textarea {
 
 .probootstrap-overflow-hidden {
   overflow: hidden;
-}
-
-.card {
-  background-color: transparent;
-  color: #e9ecef;
-}
-
-.card .btn-link {
-  color: #e9ecef;
 }
 
 .navbar-laravel {

@@ -10,18 +10,18 @@
         <div class="collapse navbar-collapse" id="probootstrap-nav">
             <!-- Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                      <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                      <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                      <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                      <li class="nav-item"><a href="/" class="nav-link {{ active_check('/') }}">Home</a></li>
+                      <li class="nav-item"><a href="/about" class="nav-link {{ active_check('about') }}">About</a></li>
+                      <li class="nav-item"><a href="/services" class="nav-link {{ active_check('services') }}">Services</a></li>
+                      <li class="nav-item"><a href="/blog" class="nav-link">Blog</a></li>
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item probootstrap-cta probootstrap-seperator">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link {{ active_check('login') }}" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     <li class="nav-item probootstrap-cta">
                         @if (Route::has('register'))
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Signup') }}</a>
+                            <a class="nav-link {{ active_check('register') }}" href="{{ route('register') }}">{{ __('Signup') }}</a>
                         @endif
                     </li>
                 @else
@@ -31,6 +31,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/dashboard">
+                                 {{ __('Dashboard') }}
+                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

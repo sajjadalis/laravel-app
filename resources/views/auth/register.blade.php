@@ -1,7 +1,15 @@
 @extends('layouts.app')
-
+@section('title')
+    <div class="col-sm">
+        <div class="probootstrap-text">
+            <h1 class="probootstrap-heading text-white mb-4">Signup</h1>
+            <div class="probootstrap-subheading mb-5">
+                <p class="h4 font-weight-normal">the first step</p>
+            </div>
+        </div>
+    </div>
+@endsection
 @section('content')
-<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -73,5 +81,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

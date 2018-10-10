@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/open-iconic-bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/icomoon.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -25,11 +27,19 @@
 
         <section class="probootstrap-cover">
             <div class="container">
-                <div class="row probootstrap-vh-100 align-items-center text-center">
-                    @yield('content')
+                <div class="row {{ Request::is('/') ? 'probootstrap-vh-100' : 'probootstrap-vh-60' }} align-items-center text-center">
+                    @yield('title')
                 </div>
             </div>
         </section>
+
+        <section class="probootstrap-section">
+            <div class="container">
+                @yield('content')
+            </div>
+        </section>
+        
+        @include('inc.footer')
     </div>
 </body>
 </html>

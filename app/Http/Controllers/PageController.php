@@ -11,4 +11,14 @@ class PageController extends Controller
         return view('pages.home')->with('title', $title);
     }
 
+    public function about() {
+        $title = "About";
+        return view('pages.about')->with('title', $title);
+    }
+
+    public function services() {
+        $title = "Services";
+        return view('pages.services')->with('title', $title);
+    }
+
 }
