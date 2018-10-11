@@ -13,7 +13,7 @@
                       <li class="nav-item"><a href="/" class="nav-link {{ active_check('/') }}">Home</a></li>
                       <li class="nav-item"><a href="/about" class="nav-link {{ active_check('about') }}">About</a></li>
                       <li class="nav-item"><a href="/services" class="nav-link {{ active_check('services') }}">Services</a></li>
-                      <li class="nav-item"><a href="/blog" class="nav-link">Blog</a></li>
+                      <li class="nav-item"><a href="/blog" class="nav-link {{ active_check('blog') }}">Blog</a></li>
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item probootstrap-cta probootstrap-seperator">
@@ -25,7 +25,7 @@
                         @endif
                     </li>
                 @else
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown probootstrap-seperator">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>

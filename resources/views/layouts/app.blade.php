@@ -27,7 +27,7 @@
 
         <section class="probootstrap-cover">
             <div class="container">
-                <div class="row {{ Request::is('/') ? 'probootstrap-vh-100' : 'probootstrap-vh-60' }} align-items-center text-center">
+                <div class="row {{ Request::is('/') ? 'probootstrap-vh-100 text-center' : 'probootstrap-vh-60 text-left' }} align-items-center">
                     @yield('title')
                 </div>
             </div>
