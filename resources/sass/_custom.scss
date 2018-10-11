@@ -447,7 +447,9 @@ textarea {
 .posts-index .col-sm-4 {
     margin-bottom: 30px;
 }
-
+.ck-editor__editable {
+    min-height: 300px;
+}
 // .card-columns {
 // 	@include media-breakpoint-only(lg) {
 // 	  column-count: 3;
