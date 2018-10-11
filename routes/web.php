@@ -16,6 +16,11 @@ Route::get('/about', 'PageController@about');
 Route::get('/services', 'PageController@services');
 
 Route::resource('blog', 'PostController');
+// Route::get('/blog', 'PostController@index');
+// Route::get('/blog/{id}', 'PostController@show');
+// Route::get('/blog/new', 'PostController@create');
+// Route::get('/blog/{id}/edit', 'PostController@edit');
+
 
 Auth::routes();
 

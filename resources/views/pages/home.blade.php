@@ -7,7 +7,11 @@
             <div class="probootstrap-subheading mb-5">
                 <p class="h4 font-weight-normal">{{$subtitle}}</p>
             </div>
-            <p><a href="/login" class="btn btn-primary mr-2 mb-2">Login</a><a href="/register" class="btn btn-primary btn-outline-white mb-2">Join Now</a></p>
+            @guest
+                <p><a href="/login" class="btn btn-primary mr-2 mb-2">Login</a><a href="/register" class="btn btn-primary btn-outline-white mb-2">Join Now</a></p>
+            @else
+                <h3 class="text-white">Welcome Back {{ Auth::user()->name }}</h3>
+            @endguest
         </div>
     </div>
 @endsection

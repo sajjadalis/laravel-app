@@ -17,7 +17,7 @@ class PostController extends Controller
         $title = "Blog";
         $subtitle = "travel posts diary";
 
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(12);
         return view('blog.index')->with(['title' => $title, 'subtitle' => $subtitle, 'posts' => $posts]);
     }
 
@@ -28,7 +28,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Add New Post";
+
+        return view('blog.new')->with('title', $title);
     }
 
     /**
@@ -39,7 +41,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+            'featured_image' => 'image|nullable|max:1999'
+        ]);
+
+        $post = new Post;
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->user_id = auth()->user()->id;
+        $post->featured_image = "noimage.jpg";
+        $post->save();
+
+        return redirect('/blog')->with('success', "Post Created");
     }
 
     /**
@@ -62,7 +77,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $post = Post::find($id);
+        return view('blog.edit')->with('post', $post);
+
     }
 
     /**
@@ -74,7 +92,14 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->user_id = auth()->user()->id;
+        $post->featured_image = "noimage.jpg";
+        $post->save();
+
+        return redirect('/blog/'.$post->id)->with('success', "Post Updated");
     }
 
     /**
@@ -85,6 +110,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        return redirect('/blog')->with('success', 'Post Deleted');
     }
 }

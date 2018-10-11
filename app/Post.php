@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $dates = ['name_field'];
+    //protected $dates = ['name_field'];
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

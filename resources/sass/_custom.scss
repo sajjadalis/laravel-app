@@ -8,6 +8,8 @@ $sm: 576px;
 $white: #fff;
 $black: #000;
 $primary: #28CC9E;
+$gray: #aaa;
+
 html {
 	overflow-x: hidden;
 }
@@ -167,6 +169,14 @@ h1, h2, h3, h4, h5 {
 		&:hover, &:focus, &:active {
 			background: $white;
 			color: $black;
+		}
+	}
+	&.btn-default {
+		background: $gray;
+		border-color: $gray;
+		color: $white;
+		&:hover, &:focus, &:active {
+			background: lighten($gray, 10%);
 		}
 	}
 }
@@ -434,6 +444,19 @@ textarea {
 }
 
 // CUSTOM CSS
+.posts-index .col-sm-4 {
+    margin-bottom: 30px;
+}
+
+// .card-columns {
+// 	@include media-breakpoint-only(lg) {
+// 	  column-count: 3;
+// 	}
+// 	@include media-breakpoint-only(xl) {
+// 	  column-count: 4;
+// 	}
+//   }
+
 // .card {
 // 	background-color: transparent;
 // 	color: #e9ecef;
@@ -441,3 +464,4 @@ textarea {
 // .card .btn-link {
 //     color: #e9ecef;
 // }
+

@@ -10660,6 +10660,18 @@ h5 {
   color: #000;
 }
 
+.btn.btn-default {
+  background: #aaa;
+  border-color: #aaa;
+  color: #fff;
+}
+
+.btn.btn-default:hover,
+.btn.btn-default:focus,
+.btn.btn-default:active {
+  background: #c4c3c3;
+}
+
 .form-control {
   border: 2px solid #ccc;
   height: 55px;
@@ -10981,6 +10993,10 @@ textarea {
 
 .probootstrap-overflow-hidden {
   overflow: hidden;
+}
+
+.posts-index .col-sm-4 {
+  margin-bottom: 30px;
 }
 
 .navbar-laravel {

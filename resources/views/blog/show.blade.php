@@ -12,6 +12,16 @@
 @endsection
 @section('content')
 
-    <p>{{ $post->body }}</p>
+    <p>{!! $post->body !!}</p>
+
+    <hr>
+
+    <a href="/blog" class="btn btn-default mr-2 mb-2">Back to All Posts</a>
+    <a href="/blog/{{$post->id}}/edit" class="btn btn-primary mb-2">Edit</a>
+    {!!Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'POST', 'class' => 'float-right'])!!}
+        {!!Form::hidden('_method', 'DELETE')!!}
+        {!!Form::submit('Delete', ['class' => 'btn btn-danger'])!!}
+    {!! Form::close() !!}
+    
 
 @endsection
