@@ -161,6 +161,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Pyaesone17\ActiveState\ActiveStateServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -10,10 +10,29 @@
         <div class="collapse navbar-collapse" id="probootstrap-nav">
             <!-- Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                      <li class="nav-item"><a href="/" class="nav-link {{ active_check('/') }}">Home</a></li>
-                      <li class="nav-item"><a href="/about" class="nav-link {{ active_check('about') }}">About</a></li>
-                      <li class="nav-item"><a href="/services" class="nav-link {{ active_check('services') }}">Services</a></li>
+                        <li class="nav-item"><a href="/" class="nav-link {{ active_check('/') }}">Home</a></li>
+                        {{-- <li class="nav-item">
+                                <a href="https://app.test/page/1/about.html" class="nav-link">About</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a href="https://app.test/page/2/services.html" class="nav-link">Services</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a href="https://app.test/page/3/post-one.html" class="nav-link">Post One</a>
+                            </li> --}}
+
+                        <!-- Pages Nav Loop -->
+                        <?php $pages = App\Page::all(); ?>
+                        @if(count($pages) > 0)
+                            @foreach($pages as $page)
+                                <li class="nav-item">
+                                    <a href="{{$page->url}}" class="nav-link" {{ Request::is('pages/{page}') ? 'active' : '' }}>{{ $page->title }}</a>
+                                </li>
+                            @endforeach
+                        @endif
+
                       <li class="nav-item"><a href="/blog" class="nav-link {{ active_check('blog*') }}">Blog</a></li>
+
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item probootstrap-cta probootstrap-seperator">

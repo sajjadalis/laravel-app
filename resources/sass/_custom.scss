@@ -1,5 +1,5 @@
 $font-serif: 'Crimson Text', serif;
-$font-sans-serif: 'Raleway', sans-serif;
+$font-sans-serif: 'Cuprum', sans-serif; //'Raleway', sans-serif;
 
 $xl: 1140px;
 $lg: 960px;
@@ -15,17 +15,19 @@ html {
 }
 body {
 	background: $white;
-	font-family: $font-sans-serif;
 	line-height: 1.7;
 	color: darken(#888, 10%);
 }
 a {
 	transition: .3s all ease;
+	color: $primary;
 	&:hover {
 		text-decoration: none;
+		color: darken($primary, 10%);
 	}
 }
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font-sans-serif;
 	line-height: 1.5;
 	font-weight: normal;
 	color: $black;
@@ -355,6 +357,7 @@ textarea {
 	.navbar-nav {
 		> .nav-item {
 			> .nav-link {
+				font-family: $font-sans-serif;
 				padding-top: 20px;
 				padding-bottom: 20px;
 				padding-left: 20px;
@@ -444,12 +447,19 @@ textarea {
 }
 
 // CUSTOM CSS
-.posts-index .col-sm-4 {
-    margin-bottom: 30px;
+.card-columns .card {
+    margin-bottom: 1.3rem;
 }
 .ck-editor__editable {
     min-height: 300px;
 }
+p.h4, p.h5, p.h6 {
+	font-family: $font-sans-serif;
+}
+
+// .posts-index .col-sm-4 {
+//     margin-bottom: 30px;
+// }
 // .card-columns {
 // 	@include media-breakpoint-only(lg) {
 // 	  column-count: 3;

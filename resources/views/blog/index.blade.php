@@ -16,15 +16,15 @@
         <div class="card-columns">
             @foreach($posts as $post)
                 <div class="card">
-                    <img class="card-img-top" src="/storage/images/{{ $post->featured_image }}" alt="Card image cap">
+                    <img class="card-img-top" src="/storage/featured_images/{{ $post->featured_image }}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title"><a href="/blog/{{$post->id}}">{{ $post->title }}</a></h5>
+                        <h5 class="card-title"><a href="{{$post->url}}">{{ $post->title }}</a></h5>
                         <p class="card-text">
                             <?php echo str_limit($post->body, 200,'...'); ?>
                         </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Created at {{ $post->created_at->format("F j, Y, g:i a") }}</small>
+                        <small class="text-muted">Created at {{ $post->created_at->format("F j, Y") }} - <a href="/blog/{{$post->id}}#disqus_thread" class="text-secondary">Leave a Comment</a></small>
                     </div>
                 </div>
             @endforeach

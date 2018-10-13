@@ -3,29 +3,135 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Page;
 
 class PageController extends Controller
 {
-    public function home() {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         $title = "A Cool Blog With Laravel";
-        $subtitle = "Get Things Done Smoothly";
-        return view('pages.home')->with(['title' => $title, 'subtitle' => $subtitle]);
+        $subtitle = "Laravel Get Things Done Smoothly";
+        $pages = Page::all();
+        return view('pages.home')->with(['title' => $title, 'subtitle' => $subtitle, 'pages' => $pages]);
     }
 
-    public function about() {
-        $title = "About";
-        $subtitle = "This is about page";
-        $body = "<p>About Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id lorem in tortor egestas tincidunt quis sit amet est. Sed mattis augue quis nisl fringilla, ac feugiat sem semper. Nam egestas eleifend arcu.</p><p>Donec rutrum, justo at pellentesque pulvinar, justo arcu pellentesque nisi, sed tincidunt diam ex et lectus. In eu mauris posuere, porta erat sit amet, efficitur mi. In elementum cursus neque, id pulvinar tellus. Cras volutpat porta est, vitae fringilla magna bibendum et. Praesent quis rutrum orci. In sit amet tellus nec arcu mollis ultricies. Maecenas id nunc sed lectus dapibus hendrerit. Vivamus facilisis augue sed nibh posuere aliquam. Quisque velit leo, sollicitudin ut vulputate sed, blandit quis enim.</p>";
-
-        return view('pages.about')->with(['title' => $title, 'subtitle' => $subtitle, 'body' => $body]);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $title = "Add New Page";
+        return view('pages.new')->with('title', $title);
     }
 
-    public function services() {
-        $title = "Services";
-        $subtitle = "This is services page";
-        $body = "<p>Services Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id lorem in tortor egestas tincidunt quis sit amet est. Sed mattis augue quis nisl fringilla, ac feugiat sem semper. Nam egestas eleifend arcu.</p><p>Donec rutrum, justo at pellentesque pulvinar, justo arcu pellentesque nisi, sed tincidunt diam ex et lectus. In eu mauris posuere, porta erat sit amet, efficitur mi. In elementum cursus neque, id pulvinar tellus. Cras volutpat porta est, vitae fringilla magna bibendum et. Praesent quis rutrum orci. In sit amet tellus nec arcu mollis ultricies. Maecenas id nunc sed lectus dapibus hendrerit. Vivamus facilisis augue sed nibh posuere aliquam. Quisque velit leo, sollicitudin ut vulputate sed, blandit quis enim.</p>";
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+            'slug' => 'nullable',
+        ]);
 
-        return view('pages.about')->with(['title' => $title, 'subtitle' => $subtitle, 'body' => $body]);
+        $page = new Page;
+        $page->title = $request->input('title');
+        $page->subtitle = $request->input('subtitle');
+        $page->body = $request->input('body');
+        $page->user_id = auth()->user()->id;
+        $page->slug = str_slug($page->title);
+        $page->save();
+
+        return redirect('/')->with('success', "Page Created");
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id, $slug = '')
+    {
+        //$page = Page::find($id);
+        //return view('pages.show')->with(['page', $page);
+
+        $page = Page::findOrFail($id);
+
+        if ($slug !== $page->slug) {
+            return redirect()->to($page->url);
+        }
+
+        return view('pages.show')->with('page', $page);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+
+        $page = Page::find($id);
+        return view('pages.edit')->with('page', $page);
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'subtitle' => 'required',
+            'body' => 'required',
+        ]);
+
+        $page = Page::find($id);
+        $page->title = $request->input('title');
+        $page->subtitle = $request->input('subtitle');
+        $page->body = $request->input('body');
+        $page->user_id = auth()->user()->id;
+        $page->save();
+
+        return redirect($page->url)->with('success', "Page Updated");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $page = Page::find($id);
+
+        // Check if user id matches the page user id to authorize delete
+        if(auth()->user()->id !== $page->user_id){
+            return redirect('/')->with('error', 'Unauthorized Page');
+        }
+
+        $page->delete();
+        return redirect('/')->with('success', 'Page Deleted');
+    }
 }

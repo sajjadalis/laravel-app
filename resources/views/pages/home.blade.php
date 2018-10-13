@@ -46,4 +46,21 @@
             </div>
         </div>
     </div>
+
+
+    @if(count($pages) > 0)
+        <div class="card-columns">
+            @foreach($pages as $page)
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{$page->url}}">{{ $page->title }}</a></h5>
+                        <p class="card-text">
+                            
+                        </p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endif
+
 @endsection
