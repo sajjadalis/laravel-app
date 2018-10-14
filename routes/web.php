@@ -27,6 +27,7 @@ Route::get('/page/{page}/{slug?}/edit', ['as' => 'pages/{page}/edit', 'uses' => 
 
 Route::resource('blog', 'PostController')->except(['show']);
 Route::get('/post/{post}/{slug?}', ['as' => 'posts/{post}', 'uses' => 'PostController@show']);
+Route::get('/post/{page}/{slug?}/edit', ['as' => 'post/{post}/edit', 'uses' => 'PostController@edit']);
 
 Auth::routes();
 

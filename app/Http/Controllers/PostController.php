@@ -110,6 +110,12 @@ class PostController extends Controller
     {
 
         $post = Post::find($id);
+
+        // Check if user id matches the post user id to authorize edit
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect($post->url)->with('error', 'Unauthorized Page');
+        }
+
         return view('blog.edit')->with('post', $post);
 
     }
@@ -164,14 +170,14 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        // Check if user id matches the post user id to authorize delete
-        if(auth()->user()->id !== $post->user_id){
-            return redirect('/blog')->with('error', 'Unauthorized Page');
-        }
-
         // Delete image if its not noimage.jpg
         if($post->featured_image != "noimage.jpg"){
             Storage::delete('public/featured_images/'.$post->featured_image);
+        }
+
+        // Check if user id matches the post user id to authorize delete
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect($post->url)->with('error', 'Unauthorized Page');
         }
 
         $post->delete();

@@ -11,16 +11,13 @@
 
     {!! Form::open(['action' => 'PageController@store', 'method' => 'POST']) !!}
         <div class="form-group">
-            {{Form::label('title', 'Title')}}
             {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
         </div>
         <div class="form-group">
-            {{Form::label('subtitle', 'Subtitle')}}
             {{Form::text('subtitle', '', ['class' => 'form-control', 'placeholder' => 'Subtitle'])}}
         </div>
         <div class="form-group">
-                {{Form::label('body', 'Body')}}
-                {{Form::textarea('body', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body Text'])}}
+            {{Form::textarea('body', '', ['id' => 'editor', 'class' => 'form-control'])}}
         </div>
         <div class="form-group">
                 {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}

@@ -10,28 +10,18 @@
         <div class="collapse navbar-collapse" id="probootstrap-nav">
             <!-- Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="/" class="nav-link {{ active_check('/') }}">Home</a></li>
-                        {{-- <li class="nav-item">
-                                <a href="https://app.test/page/1/about.html" class="nav-link">About</a>
-                            </li>
-                                                        <li class="nav-item">
-                                <a href="https://app.test/page/2/services.html" class="nav-link">Services</a>
-                            </li>
-                                                        <li class="nav-item">
-                                <a href="https://app.test/page/3/post-one.html" class="nav-link">Post One</a>
-                            </li> --}}
-
+                        <li class="nav-item"><a href="/" class="nav-link {{ active_check('/') }}">{{ __('Home') }}</a></li>
                         <!-- Pages Nav Loop -->
                         <?php $pages = App\Page::all(); ?>
                         @if(count($pages) > 0)
                             @foreach($pages as $page)
                                 <li class="nav-item">
-                                    <a href="{{$page->url}}" class="nav-link" {{ Request::is('pages/{page}') ? 'active' : '' }}>{{ $page->title }}</a>
+                                    <a href="{{$page->url}}" class="nav-link" {{ Request::is('pages/{page}') ? 'active' : '' }}>{{ __($page->title) }}</a>
                                 </li>
                             @endforeach
                         @endif
 
-                      <li class="nav-item"><a href="/blog" class="nav-link {{ active_check('blog*') }}">Blog</a></li>
+                      <li class="nav-item"><a href="/blog" class="nav-link {{ active_check('blog*') }}">{{ __('Blog') }}</a></li>
 
                 <!-- Authentication Links -->
                 @guest
@@ -53,6 +43,9 @@
                             <a class="dropdown-item" href="/dashboard">
                                  {{ __('Dashboard') }}
                              </a>
+                             <a class="dropdown-item" href="/pages/create">
+                                {{ __('Add New Page') }}
+                            </a>
                              <a class="dropdown-item" href="/blog/create">
                                 {{ __('Add New Post') }}
                             </a>

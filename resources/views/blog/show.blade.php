@@ -13,18 +13,20 @@
 @section('content')
     
     @if($post->featured_image != "noimage.jpg")
-        <img src="/storage/featured_images/{{$post->featured_image}}" class="img-fluid">
+        <img src="/storage/featured_images/{{$post->featured_image}}" class="img-fluid mb-5">
     @endif
 
     <p>{!! $post->body !!}</p>
 
     @if(!Auth::guest())
-        <hr>
-        <a href="/blog/{{$post->id}}/edit" class="btn btn-primary mb-2">Edit</a>
-        {!!Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'POST', 'class' => 'float-right'])!!}
-            {!!Form::hidden('_method', 'DELETE')!!}
-            {!!Form::submit('Delete', ['class' => 'btn btn-danger'])!!}
-        {!! Form::close() !!}
+        @if(Auth::user()->id == $post->user_id)
+            <hr>
+            <a href="{{$post->url}}/edit" class="btn btn-primary mb-2">Edit</a>
+            {!!Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'POST', 'onsubmit' => 'return confirm_delete()', 'class' => 'float-right'])!!}
+                {!!Form::hidden('_method', 'DELETE')!!}
+                {!!Form::submit('Delete', ['class' => 'btn btn-danger trigger-btn', 'data-toggle' => 'modal'])!!}
+            {!! Form::close() !!}
+        @endif
     @endif
 
     <hr>

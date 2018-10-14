@@ -15,12 +15,14 @@
     <p>{!! $page->body !!}</p>
 
     @if(!Auth::guest())
-        <hr>
-        <a href="{{$page->url}}/edit" class="btn btn-primary mb-2">Edit</a>
-        {!!Form::open(['action' => ['PageController@destroy', $page->id], 'method' => 'POST', 'class' => 'float-right'])!!}
-            {!!Form::hidden('_method', 'DELETE')!!}
-            {!!Form::submit('Delete', ['class' => 'btn btn-danger'])!!}
-        {!! Form::close() !!}
+        @if(Auth::user()->id == $page->user_id)
+            <hr>
+            <a href="{{$page->url}}/edit" class="btn btn-primary mb-2">Edit</a>
+            {!!Form::open(['action' => ['PageController@destroy', $page->id], 'method' => 'POST', 'onsubmit' => 'return confirm_delete()', 'class' => 'float-right'])!!}
+                {!!Form::hidden('_method', 'DELETE')!!}
+                {!!Form::submit('Delete', ['class' => 'btn btn-danger'])!!}
+            {!! Form::close() !!}
+        @endif
     @endif
 
 @endsection

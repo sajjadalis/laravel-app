@@ -447,14 +447,26 @@ textarea {
 }
 
 // CUSTOM CSS
+.dropdown-item:active {
+    background-color: $primary;
+}
 .card-columns .card {
     margin-bottom: 1.3rem;
 }
 .ck-editor__editable {
     min-height: 300px;
 }
+.jodit_wysiwyg {
+    min-height: 300px!important;
+}
 p.h4, p.h5, p.h6 {
 	font-family: $font-sans-serif;
+}
+.btn-sm {
+	padding: 6px 10px 4px;
+	margin-right: 6px;
+    font-size: 9px;
+    line-height: 110%;
 }
 
 // .posts-index .col-sm-4 {

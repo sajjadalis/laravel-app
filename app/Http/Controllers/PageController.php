@@ -87,6 +87,12 @@ class PageController extends Controller
     {
 
         $page = Page::find($id);
+
+        // Check if user id matches the page user id to authorize edit
+        if(auth()->user()->id !== $page->user_id){
+            return redirect($page->url)->with('error', 'Unauthorized Page');
+        }
+
         return view('pages.edit')->with('page', $page);
 
     }
@@ -128,7 +134,7 @@ class PageController extends Controller
 
         // Check if user id matches the page user id to authorize delete
         if(auth()->user()->id !== $page->user_id){
-            return redirect('/')->with('error', 'Unauthorized Page');
+            return redirect($page->url)->with('error', 'Unauthorized Page');
         }
 
         $page->delete();
