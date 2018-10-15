@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Page;
+use App\Post;
 
 class PageController extends Controller
 {
@@ -18,7 +19,8 @@ class PageController extends Controller
         $title = "A Cool Blog With Laravel";
         $subtitle = "Laravel Get Things Done Smoothly";
         $pages = Page::all();
-        return view('pages.home')->with(['title' => $title, 'subtitle' => $subtitle, 'pages' => $pages]);
+        $posts = Post::orderBy('created_at', 'desc')->take(3)->get();
+        return view('pages.home')->with(['title' => $title, 'subtitle' => $subtitle, 'pages' => $pages, 'posts' => $posts]);
     }
 
     /**
@@ -66,8 +68,6 @@ class PageController extends Controller
     public function show($id, $slug = '')
     {
         //$page = Page::find($id);
-        //return view('pages.show')->with(['page', $page);
-
         $page = Page::findOrFail($id);
 
         if ($slug !== $page->slug) {

@@ -12,11 +12,13 @@
 @endsection
 @section('content')
 
-    @if(count($posts) > 0)
+    @if( $posts->count() )
         <div class="card-columns">
             @foreach($posts as $post)
                 <div class="card">
-                    <a href="{{$post->url}}"><img class="card-img-top" src="/storage/featured_images/{{ $post->featured_image }}" alt="Card image cap"></a>
+                        <div class="card-img">
+                                <a href="{{$post->url}}"><img class="card-img-top" src="/storage/featured_images/{{ $post->featured_image }}" alt="{{ $post->title }}"></a>
+                            </div>
                     <div class="card-body">
                         <h5 class="card-title"><a href="{{$post->url}}">{{ $post->title }}</a></h5>
                         <p class="card-text">

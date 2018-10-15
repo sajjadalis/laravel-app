@@ -11003,8 +11003,23 @@ textarea {
   background-color: #28CC9E;
 }
 
+.card-img {
+  height: 230px;
+  overflow: hidden;
+}
+
 .card-columns .card {
   margin-bottom: 1.3rem;
+}
+
+.page-link {
+  color: #28CC9E;
+}
+
+.page-item.active .page-link,
+.list-group-item.active {
+  background-color: #28CC9E;
+  border-color: #28CC9E;
 }
 
 .ck-editor__editable {
@@ -11029,9 +11044,9 @@ p.h6 {
   line-height: 110%;
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.fa,
+.fas,
+.far {
+  margin-right: 5px;
 }
 

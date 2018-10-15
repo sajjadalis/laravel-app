@@ -47,20 +47,30 @@
         </div>
     </div>
 
-
-    @if(count($pages) > 0)
-        <div class="card-columns">
-            @foreach($pages as $page)
+<h2>{{ __('Recent Posts') }}</h2>
+    @if( $posts->count() )
+        <div class="card-deck">
+            @foreach($posts as $post)
                 <div class="card">
+                    <div class="card-img">
+                        <a href="{{$post->url}}"><img class="card-img-top" src="/storage/featured_images/{{ $post->featured_image }}" alt="{{ $post->title }}"></a>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title"><a href="{{$page->url}}">{{ $page->title }}</a></h5>
+                        <h5 class="card-title"><a href="{{$post->url}}">{{ $post->title }}</a></h5>
                         <p class="card-text">
-                            
+                            <?php echo str_limit($post->body, 200,'...'); ?>
                         </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Created at {{ $post->created_at->format("F j, Y") }} - <a href="/blog/{{$post->id}}#disqus_thread" class="text-secondary">Leave a Comment</a></small>
                     </div>
                 </div>
             @endforeach
         </div>
+    
+    @else
+        <p>No posts found</p>
     @endif
+
 
 @endsection

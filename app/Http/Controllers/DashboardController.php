@@ -27,6 +27,22 @@ class DashboardController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
 
-        return view('dashboard')->with(['posts' => $user->posts, 'pages' => $user->pages]);
+        return view('cp.dashboard')->with(['posts' => $user->posts, 'pages' => $user->pages]);
+    }
+
+    public function posts()
+    {
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
+        return view('cp.posts')->with('posts', $posts);
+    }
+
+    public function pages()
+    {
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $pages = $user->pages()->orderBy('created_at', 'desc')->paginate(10);
+        return view('cp.pages')->with('pages', $pages);
     }
 }

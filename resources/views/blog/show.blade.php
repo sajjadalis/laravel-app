@@ -5,7 +5,13 @@
         <div class="probootstrap-text">
             <h1 class="probootstrap-heading text-white mb-4">{{$post->title}}</h1>
             <div class="probootstrap-subheading mb-5">
-            <p class="h6 font-weight-normal">Created at {{ $post->created_at->format("F j, Y, g:i a") }} by {{$post->user->name}} - <a href="#disqus_thread" class="text-white">Leave a Comment</a></p>
+            <p class="h6 font-weight-normal">
+                <i class="fa fa-user"></i> {{$post->user->name}} &nbsp;
+                <i class="fa fa-clock"></i> {{ $post->created_at->diffForHumans() }} &nbsp;
+                <i class="fa fa-comment"></i> <a href="#disqus_thread" class="text-white">Leave a Comment</a> &nbsp;
+                <a href="{{ $post->url . '/heart' }}" class="far fa-heart text-white like-article js-like-article" ></a>
+                <span class="js-like-article-count text-white">5</span>
+            </p>
             </div>
         </div>
     </div>
@@ -15,7 +21,8 @@
     @if($post->featured_image != "noimage.jpg")
         <img src="/storage/featured_images/{{$post->featured_image}}" class="img-fluid mb-5">
     @endif
-
+    
+    <br>
     <p>{!! $post->body !!}</p>
 
     @if(!Auth::guest())

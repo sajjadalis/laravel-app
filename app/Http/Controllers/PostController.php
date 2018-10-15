@@ -100,6 +100,13 @@ class PostController extends Controller
         return view('blog.show')->with('post', $post);
     }
 
+    public function heart(Request $request, $id)
+    {
+        return response()->json([
+            'hearts' => rand(5, 100)
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

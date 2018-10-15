@@ -13,7 +13,7 @@
                         <li class="nav-item"><a href="/" class="nav-link {{ active_check('/') }}">{{ __('Home') }}</a></li>
                         <!-- Pages Nav Loop -->
                         <?php $pages = App\Page::all(); ?>
-                        @if(count($pages) > 0)
+                        @if( $pages->count() )
                             @foreach($pages as $page)
                                 <li class="nav-item">
                                     <a href="{{$page->url}}" class="nav-link" {{ Request::is('pages/{page}') ? 'active' : '' }}>{{ __($page->title) }}</a>
@@ -40,7 +40,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/dashboard">
+                        <a class="dropdown-item" href="{{ route('cp.dashboard') }}">
                                  {{ __('Dashboard') }}
                              </a>
                              <a class="dropdown-item" href="/pages/create">
