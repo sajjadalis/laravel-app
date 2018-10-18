@@ -10500,8 +10500,7 @@ h6 {
 }
 
 .probootstrap-nav {
-  padding: 20px 0;
-  position: absolute;
+  padding: 0px 0;
   top: 0;
   left: 0;
   right: 0;
@@ -10540,8 +10539,8 @@ h6 {
 }
 
 .probootstrap-nav .probootstrap-main-nav ul li a {
-  padding: 10px;
-  color: rgba(255, 255, 255, 0.5);
+  padding: 0px 10px;
+  color: rgba(255, 255, 255, 0.911);
 }
 
 .probootstrap-nav .probootstrap-main-nav ul li.seperator {
@@ -10603,6 +10602,14 @@ h6 {
 .probootstrap-cover {
   background-image: url(/storage/images/cover_bg.svg);
   background-position: center center;
+  position: relative;
+}
+
+.probootstrap-cover .cover-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .probootstrap-cover .probootstrap-text .probootstrap-heading {
@@ -10680,11 +10687,6 @@ h6 {
   height: 55px;
 }
 
-.form-control:focus,
-.form-control:active {
-  border: 2px solid #000;
-}
-
 textarea {
   height: inherit !important;
 }
@@ -10714,8 +10716,8 @@ textarea {
 }
 
 .probootstrap-vh-60 {
-  height: 60vh;
-  padding-top: 6em;
+  height: 50vh;
+  padding-top: 3em;
 }
 
 @media screen and (max-width: 768px) {
@@ -10732,11 +10734,11 @@ textarea {
 
 .probootstrap-section,
 .probootstrap-footer {
-  padding: 7em 0;
+  padding: 4.5em 0;
 }
 
 .probootstrap-footer {
-  background: #000;
+  background: #1f1c25;
 }
 
 .probootstrap-footer a {
@@ -10883,8 +10885,7 @@ textarea {
 }
 
 .probootstrap-navabr-dark {
-  background: rgba(0, 0, 0, 0.2) !important;
-  position: absolute;
+  background: #0d0915eb !important;
   left: 0;
   right: 0;
 }
@@ -10899,8 +10900,8 @@ textarea {
 
 .probootstrap-navabr-dark .navbar-nav > .nav-item > .nav-link {
   font-family: "Cuprum", sans-serif;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -10920,8 +10921,8 @@ textarea {
 
 .probootstrap-navabr-dark .navbar-nav > .nav-item.probootstrap-seperator {
   position: relative;
-  margin-left: 20px;
-  padding-left: 20px;
+  margin-left: 15px;
+  padding-left: 15px;
 }
 
 @media screen and (max-width: 960px) {
@@ -10934,11 +10935,11 @@ textarea {
 .probootstrap-navabr-dark .navbar-nav > .nav-item.probootstrap-seperator:before {
   position: absolute;
   content: "";
-  top: 10px;
-  bottom: 10px;
+  top: 5px;
+  bottom: 5px;
   left: 0;
   width: 2px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 @media screen and (max-width: 960px) {
@@ -10999,8 +11000,52 @@ textarea {
   overflow: hidden;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+nav.navbar {
+  z-index: 999;
+  padding: 0rem 1rem;
+}
+
+nav.navbar .dropdown-menu {
+  border-radius: 0;
+  top: 109%;
+  font-size: 14px;
+  background-color: #11111175;
+  padding: 0px;
+}
+
+nav.navbar .dropdown-menu .dropdown-item {
+  border-bottom: 1px solid #11111175;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+nav.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #11111175;
+}
+
+nav.navbar .dropdown-menu .dropdown-item:nth-last-child(2) {
+  border-bottom: 0px;
+}
+
+.dropdown-item:focus {
+  background-color: initial;
+}
+
+a.text-white:hover {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
 .dropdown-item:active {
   background-color: #28CC9E;
+}
+
+.comment {
+  padding: 15px 0 5px;
+  border-bottom: 1px solid #ddd;
 }
 
 .card-img {
@@ -11048,5 +11093,167 @@ p.h6 {
 .fas,
 .far {
   margin-right: 5px;
+}
+
+.cover-image {
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+/**** PROFILE CARD *****/
+
+.profile .alert {
+  margin-left: 420px;
+}
+
+.profile .probootstrap-text {
+  margin-left: 400px;
+  margin-top: 200px;
+}
+
+.profile .probootstrap-text .probootstrap-heading {
+  line-height: 0.6;
+}
+
+.profile-card {
+  position: relative;
+  top: -300px;
+  padding-top: 20px;
+  margin: 10px 0 20px 0;
+  background-color: rgba(214, 224, 226, 0.2);
+  border-top-width: 0;
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  -webkit-box-shadow: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 5px 5px 25px #9999999c;
+          box-shadow: 5px 5px 25px #9999999c;
+}
+
+.profile-card.hovercard {
+  padding-top: 0;
+  overflow: hidden;
+  background-color: rgba(214, 224, 226, 0.2);
+}
+
+.profile-card.hovercard .profile-cardheader {
+  background-size: cover;
+  background-position: center center;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.profile-card.hovercard .profile-cardheader img {
+  width: 100%;
+  height: auto;
+}
+
+.profile-card.hovercard .avatar {
+  position: relative;
+  top: -50px;
+  margin-bottom: -50px;
+}
+
+.profile-card.hovercard .avatar img {
+  width: 100px;
+  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+}
+
+.profile-card.hovercard .info {
+  padding: 20px 25px 0;
+}
+
+.profile-card.hovercard .info .title {
+  margin-bottom: 4px;
+  font-size: 24px;
+  line-height: 1.5;
+  color: #262626;
+  vertical-align: middle;
+}
+
+.profile-card.hovercard .info .desc {
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 28px;
+  color: #737373;
+  text-overflow: ellipsis;
+}
+
+.profile-card.hovercard .info .info-item {
+  font-size: 13px;
+  color: #737373;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ddd;
+  padding: 6px 6px;
+}
+
+.profile-card.hovercard .info .info-item .info-count {
+  font-weight: 700;
+}
+
+.profile-card.hovercard .bottom {
+  padding: 25px 20px 10px;
+  margin-bottom: 17px;
+}
+
+.profile-card .btn {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 28px;
+  font-size: 16px;
+}
+
+.profile-card .btn {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 28px;
+  font-size: 16px;
+}
+
+.profile .modal-content {
+  background-color: #f1f1f1;
+  padding: 25px 40px;
+  border-radius: 0;
+  -webkit-box-shadow: 5px 5px 15px #11111152;
+          box-shadow: 5px 5px 15px #11111152;
+}
+
+/**** PROFILE POSTS *****/
+
+.profile .profile-blog-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.profile .profile-blog-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.profile .post {
+  border-bottom: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.profile .post .excerpt {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.profile .post h4 {
+  font-size: 20px;
+  line-height: 1;
 }
 

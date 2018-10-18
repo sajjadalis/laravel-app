@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark probootstrap-navabr-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top probootstrap-navabr-dark">
         <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -16,12 +16,12 @@
                         @if( $pages->count() )
                             @foreach($pages as $page)
                                 <li class="nav-item">
-                                    <a href="{{$page->url}}" class="nav-link" {{ Request::is('pages/{page}') ? 'active' : '' }}>{{ __($page->title) }}</a>
+                                    <a href="{{$page->url}}" class="nav-link {{ (strpos($_SERVER['REQUEST_URI'], str_slug($page->title)) !== false) ? 'active' : '' }}">{{ __($page->title) }}</a>
                                 </li>
                             @endforeach
                         @endif
 
-                      <li class="nav-item"><a href="/blog" class="nav-link {{ active_check('blog*') }}">{{ __('Blog') }}</a></li>
+                      <li class="nav-item"><a href="/blog" class="nav-link {{ active_check(['blog*', 'post*']) }}">{{ __('Blog') }}</a></li>
 
                 <!-- Authentication Links -->
                 @guest
@@ -40,14 +40,20 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('cp.dashboard') }}">
-                                 {{ __('Dashboard') }}
+                            <a class="dropdown-item" href="{{ Auth::user()->url }}">
+                                {{ __('Profile') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('cp.dashboard') }}">
+                                {{ __('Dashboard') }}
                              </a>
-                             <a class="dropdown-item" href="/pages/create">
+                            <a class="dropdown-item" href="/pages/create">
                                 {{ __('Add New Page') }}
                             </a>
                              <a class="dropdown-item" href="/blog/create">
                                 {{ __('Add New Post') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('cp.settings') }}">
+                                {{ __('Settings') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

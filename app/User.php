@@ -28,6 +28,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function getSlugAttribute(): string
+    {
+        return str_slug($this->name);
+    }
+    public function getUrlAttribute(): string
+    {
+        return action('UserController@profile', [$this->id, $this->slug]);
+    }
+
     public function posts(){
         return $this->hasMany('App\Post');
     }

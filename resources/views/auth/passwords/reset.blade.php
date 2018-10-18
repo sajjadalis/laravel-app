@@ -1,5 +1,17 @@
 @extends('layouts.app')
-
+@section('title')
+    <section class="probootstrap-cover">
+        <div class="container">
+            <div class="row probootstrap-vh-60 text-left align-items-center">
+                <div class="col-sm">
+                    <div class="probootstrap-text">
+                        <h1 class="probootstrap-heading text-white mb-4">Reset Password</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

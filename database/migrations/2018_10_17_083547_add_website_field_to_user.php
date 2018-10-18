@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSlugToPages extends Migration
+class AddWebsiteFieldToUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddSlugToPages extends Migration
      */
     public function up()
     {
-        Schema::table('pages', function($table){
-            $table->string('slug');
+        Schema::table('users', function(Blueprint $table){
+            $table->string('website')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddSlugToPages extends Migration
      */
     public function down()
     {
-        Schema::table('pages', function($table){
-            $table->dropColumn('slug');
+        Schema::table('users', function($table){
+            $table->dropColumn('website');
         });
     }
 }

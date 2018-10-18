@@ -1,14 +1,20 @@
 @extends('layouts.app')
 
 @section('title')
-    <div class="col-sm">
-        <div class="probootstrap-text">
-            <h1 class="probootstrap-heading text-white mb-4">{{$title}}</h1>
-            <div class="probootstrap-subheading mb-5">
-                <p class="h4 font-weight-normal">{{$subtitle}}</p>
+    <section class="probootstrap-cover">
+        <div class="container">
+            <div class="row probootstrap-vh-60 text-left align-items-center">
+                <div class="col-sm">
+                    <div class="probootstrap-text">
+                        <h1 class="probootstrap-heading text-white mb-4">{{$title}}</h1>
+                        <div class="probootstrap-subheading mb-5">
+                                <p class="h4 font-weight-normal">{{$subtitle}}</p>
+                            </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
 @section('content')
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id lorem in tortor egestas tincidunt quis sit amet est. Sed mattis augue quis nisl fringilla, ac feugiat sem semper. Nam egestas eleifend arcu, sit amet rutrum libero posuere vitae. Vestibulum sed iaculis sem, eget placerat diam. Aenean imperdiet vehicula urna, suscipit aliquam turpis rutrum eu. Donec vulputate libero nisl, vitae sagittis libero tincidunt et. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque lacinia magna vitae neque semper laoreet. Quisque lobortis neque quis nunc fermentum malesuada.</p>

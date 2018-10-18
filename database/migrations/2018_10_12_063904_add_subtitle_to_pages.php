@@ -26,7 +26,7 @@ class AddSubtitleToPages extends Migration
     public function down()
     {
         Schema::table('pages', function($table){
-            $table->dropColumncler('subtitle');
+            $table->dropColumn('subtitle');
         });
     }
 }

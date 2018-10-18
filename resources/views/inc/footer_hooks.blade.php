@@ -19,28 +19,44 @@
 @If(Request::is(['*edit', "*create"]))
 
     <script>
-        var editor = new Jodit("#editor");
+        $('input[name="picture"]').change(function(e){
+            var fileName = e.target.files[0].name;
+            $('.pic-label').html(fileName);
+        });
+        $('input[name="cover_image"]').change(function(e){
+            var fileName = e.target.files[0].name;
+            $('.cover-label').html(fileName);
+        });
+        $('input[name="featured_image"]').change(function(e){
+            var fileName = e.target.files[0].name;
+            $('.featured-label').html(fileName);
+        });
     </script>
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) 
+                // , {
+                //     toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', 'video' ],
+                //     heading: {
+                //         options: [
+                //             { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                //             { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                //             { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                //             { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                //             { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' }
+                //         ]
+                //     }
+                // }
+            )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
+    {{-- <script>
+        var editor = new Jodit("#editor");
+    </script> --}}
 
 @endif
 
-{{-- <script>
-    ClassicEditor
-        .create( document.querySelector( '#article-ckeditor' ) 
-            // , {
-            //     toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', 'video' ],
-            //     heading: {
-            //         options: [
-            //             { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-            //             { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-            //             { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-            //             { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
-            //             { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' }
-            //         ]
-            //     }
-            // }
-        )
-        .catch( error => {
-            console.error( error );
-        } );
-</script> --}}

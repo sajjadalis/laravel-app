@@ -2,13 +2,13 @@
     <div id="app">
         @include('inc.nav')
 
-        <section class="probootstrap-cover">
+        {{-- <section class="probootstrap-cover">
             <div class="container">
-                <div class="row {{ Request::is('/') ? 'probootstrap-vh-100 text-center' : 'probootstrap-vh-60 text-left' }} align-items-center">
+                <div class="row {{ Request::is('/') ? 'probootstrap-vh-100 text-center' : 'probootstrap-vh-60 text-left' }} align-items-center"> --}}
                     @yield('title')
-                </div>
+                {{-- </div>
             </div>
-        </section>
+        </section> --}}
 
         <section class="probootstrap-section">
             <div class="container">

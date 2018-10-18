@@ -13,8 +13,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.39/jodit.min.js"></script>
-    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/11.1.0/classic/ckeditor.js"></script> --}}
+    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.39/jodit.min.js"></script> --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.0/classic/ckeditor.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -28,4 +28,4 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.39/jodit.min.css">
 
 </head>
-<body>
+<body class="{{route('pageshome') ? 'home' : ''}} {{ Request::is('profile*') ? 'profile' : ''}}">

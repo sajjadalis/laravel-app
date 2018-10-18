@@ -1,11 +1,17 @@
 @extends('layouts.app')
 
 @section('title')
-    <div class="col-sm">
-        <div class="probootstrap-text">
-            <h1 class="probootstrap-heading text-white mb-4">Edit Page</h1>
+    <section class="probootstrap-cover">
+        <div class="container">
+            <div class="row probootstrap-vh-60 text-left align-items-center">
+                <div class="col-sm">
+                    <div class="probootstrap-text">
+                        <h1 class="probootstrap-heading text-white mb-4">{{$title}}</h1>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 @endsection
 @section('content')
 

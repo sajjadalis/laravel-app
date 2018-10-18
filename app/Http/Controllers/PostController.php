@@ -26,9 +26,9 @@ class PostController extends Controller
     {
         $title = "Blog";
         $subtitle = "travel posts diary";
-
         $posts = Post::orderBy('created_at', 'desc')->paginate(12);
-        return view('blog.index')->with(['title' => $title, 'subtitle' => $subtitle, 'posts' => $posts]);
+
+        return view('blog.index', compact('title', 'subtitle', 'posts'));
     }
 
     /**
@@ -39,8 +39,7 @@ class PostController extends Controller
     public function create()
     {
         $title = "Add New Post";
-
-        return view('blog.new')->with('title', $title);
+        return view('blog.new', compact('title'));
     }
 
     /**
@@ -73,6 +72,13 @@ class PostController extends Controller
             $fileNameToStore = "noimage.jpg";
         }
 
+        // Post::create([
+        //     'title' => request('title'),
+        //     'body' => request('body'),
+        //     'user_id' => auth()->user()->id,
+        //     'featured_image' => $fileNameToStore
+        // ]);
+
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
@@ -89,15 +95,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $slug = '')
+    public function show(Post $post, $slug = '')
     {
-        $post = Post::find($id);
 
         if ($slug !== $post->slug) {
             return redirect()->to($post->url);
         }
 
-        return view('blog.show')->with('post', $post);
+        return view('blog.show', compact('post'));
     }
 
     public function heart(Request $request, $id)
@@ -115,7 +120,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-
+        $title = "Edit";
         $post = Post::find($id);
 
         // Check if user id matches the post user id to authorize edit
@@ -123,7 +128,7 @@ class PostController extends Controller
             return redirect($post->url)->with('error', 'Unauthorized Page');
         }
 
-        return view('blog.edit')->with('post', $post);
+        return view('blog.edit', compact('post', 'title'));
 
     }
 

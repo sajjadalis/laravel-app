@@ -1,19 +1,25 @@
 @extends('layouts.app')
 
 @section('title')
-    <div class="col-sm">
-        <div class="probootstrap-text">
-            <h1 class="probootstrap-heading text-white mb-4">{{$title}}</h1>
-            <div class="probootstrap-subheading mb-5">
-                <p class="h4 font-weight-normal">{{$subtitle}}</p>
+    <section class="probootstrap-cover">
+        <div class="container">
+            <div class="row probootstrap-vh-100 text-center align-items-center">
+                <div class="col-sm">
+                    <div class="probootstrap-text">
+                        <h1 class="probootstrap-heading text-white mb-4">{{$title}}</h1>
+                        <div class="probootstrap-subheading mb-5">
+                            <p class="h4 font-weight-normal">{{$subtitle}}</p>
+                        </div>
+                        @guest
+                            <p><a href="/login" class="btn btn-primary mr-2 mb-2">Login</a><a href="/register" class="btn btn-primary btn-outline-white mb-2">Join Now</a></p>
+                        @else
+                            <h3 class="text-white">Welcome Back <a href="{{ Auth::user()->url }}" class="text-white">{{ Auth::user()->name }}</a></h3>
+                        @endguest
+                    </div>
+                </div>
             </div>
-            @guest
-                <p><a href="/login" class="btn btn-primary mr-2 mb-2">Login</a><a href="/register" class="btn btn-primary btn-outline-white mb-2">Join Now</a></p>
-            @else
-                <h3 class="text-white">Welcome Back {{ Auth::user()->name }}</h3>
-            @endguest
         </div>
-    </div>
+    </section>
 @endsection
 
 @section('content')

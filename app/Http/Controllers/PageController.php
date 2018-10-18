@@ -65,10 +65,8 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $slug = '')
+    public function show(Page $page, $slug = '')
     {
-        //$page = Page::find($id);
-        $page = Page::findOrFail($id);
 
         if ($slug !== $page->slug) {
             return redirect()->to($page->url);
@@ -86,6 +84,7 @@ class PageController extends Controller
     public function edit($id)
     {
 
+        $title = "Edit";
         $page = Page::find($id);
 
         // Check if user id matches the page user id to authorize edit
@@ -93,7 +92,7 @@ class PageController extends Controller
             return redirect($page->url)->with('error', 'Unauthorized Page');
         }
 
-        return view('pages.edit')->with('page', $page);
+        return view('pages.edit')->with(['page' => $page, 'title' => $title]);
 
     }
 

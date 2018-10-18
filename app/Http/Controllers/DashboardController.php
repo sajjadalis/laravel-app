@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Hash;
+use Hash;
+use Auth;
 use App\User;
 
 class DashboardController extends Controller
@@ -24,25 +27,62 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $title = "Dashboard";
+        $subtitle = "control your stuff here";
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
 
-        return view('cp.dashboard')->with(['posts' => $user->posts, 'pages' => $user->pages]);
+        return view('cp.dashboard')->with(['posts' => $user->posts, 'pages' => $user->pages, 'title' => $title, 'subtitle' => $subtitle]);
     }
 
     public function posts()
     {
+        $title = "Posts";
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
-        return view('cp.posts')->with('posts', $posts);
+        return view('cp.posts')->with(['posts' => $posts, 'title' => $title]);
     }
 
     public function pages()
     {
+        $title = "Pages";
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $pages = $user->pages()->orderBy('created_at', 'desc')->paginate(10);
-        return view('cp.pages')->with('pages', $pages);
+        return view('cp.pages')->with(['pages' => $pages, 'title' => $title]);
+    }
+
+    public function settings() {
+        $title = "Change Password";
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        return view('cp.settings')->with(['user' => $user, 'title' => $title]);
+    }
+
+    public function changePassword(Request $request){
+
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+        }
+
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            //Current password and new password are same
+            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+        }
+
+        $validatedData = $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|string|min:6|confirmed',
+        ]);
+
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+
+        return redirect()->back()->with("success","Password changed successfully !");
+
     }
 }
