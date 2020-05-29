@@ -52,6 +52,7 @@
                              <a class="dropdown-item" href="/blog/create">
                                 {{ __('Add New Post') }}
                             </a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('cp.settings') }}">
                                 {{ __('Settings') }}
                             </a>

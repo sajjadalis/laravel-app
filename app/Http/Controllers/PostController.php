@@ -72,6 +72,10 @@ class PostController extends Controller
             $fileNameToStore = "noimage.jpg";
         }
 
+        auth()->user()->publish(
+            new Post(request(['title', 'body', ['featured_image', $fileNameToStore]]))
+        );
+
         // Post::create([
         //     'title' => request('title'),
         //     'body' => request('body'),
@@ -79,12 +83,12 @@ class PostController extends Controller
         //     'featured_image' => $fileNameToStore
         // ]);
 
-        $post = new Post;
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->user_id = auth()->user()->id;
-        $post->featured_image = $fileNameToStore;
-        $post->save();
+        // $post = new Post;
+        // $post->title = $request->input('title');
+        // $post->body = $request->input('body');
+        // $post->user_id = auth()->user()->id;
+        // $post->featured_image = $fileNameToStore;
+        // $post->save();
 
         return redirect('/blog')->with('success', "Post Created");
     }
@@ -194,5 +198,6 @@ class PostController extends Controller
 
         $post->delete();
         return redirect('/blog')->with('success', 'Post Deleted');
+        //return back()->with('success', 'Post Deleted');
     }
 }

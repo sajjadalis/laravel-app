@@ -8,7 +8,7 @@ class Post extends Model
 {
     //protected $fillable = ['title', 'body', 'featured_image'];
 
-    //protected $guarded = ['user_id'];
+    protected $guarded = ['user_id'];
 
     protected $dates = ['name_field'];
 
@@ -22,11 +22,29 @@ class Post extends Model
         return action('PostController@show', [$this->id, $this->slug]);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
     
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
+
+    // As we have relationship between post and comment. 
+    // All we need to do is $this to get post id
+    // Pass fields inside compact('body') which converts to 'body' => $body (request)
+
+    public function addComments()
+    {
+        $this->comments()->create([
+            'name' =>   request('name'),
+            'email' =>  request('email'),
+            'comment' =>  request('comment')
+        ]);
+
+        //$this->comments()->create(request(['name', 'email', 'comment'])); // not working
+    }
+
 }

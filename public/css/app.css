@@ -11011,20 +11011,23 @@ nav.navbar {
 
 nav.navbar .dropdown-menu {
   border-radius: 0;
-  top: 109%;
-  font-size: 14px;
-  background-color: #11111175;
-  padding: 0px;
+  top: 119%;
+  font-size: 13px;
+  background-color: #111111de;
+  padding: 10px 0;
 }
 
 nav.navbar .dropdown-menu .dropdown-item {
-  border-bottom: 1px solid #11111175;
   color: #fff;
-  padding: 10px 20px;
+  padding: 5px 20px;
 }
 
 nav.navbar .dropdown-menu .dropdown-item:hover {
-  background-color: #11111175;
+  background-color: #000000bf;
+}
+
+.dropdown-divider {
+  border-top: 1px solid #63636380;
 }
 
 nav.navbar .dropdown-menu .dropdown-item:nth-last-child(2) {
