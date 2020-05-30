@@ -26,13 +26,13 @@ class Post extends Model
     {
         return $this->belongsTo('App\User');
     }
-    
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
 
-    // As we have relationship between post and comment. 
+    // As we have relationship between post and comment.
     // All we need to do is $this to get post id
     // Pass fields inside compact('body') which converts to 'body' => $body (request)
 
